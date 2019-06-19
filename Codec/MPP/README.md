@@ -1,5 +1,5 @@
 MPP_Encode.cpp：
-实时编码
+打开摄像头采集，实时编码
 
 MPP_Decode.cpp：
-实时解码
+打开RTSP网络流，实时解码
