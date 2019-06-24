@@ -399,8 +399,11 @@ int MyYuvtoH264(int width, int height, Mat yuv_frame, unsigned char* (&encode_bu
 		test_mpp_run_yuv(yuv_frame, mpi, ctx, H264_buf, length);
 	
 		encode_buf = new unsigned char[SPS_length + length];
-		memcpy(encode_buf, SPS_buf, SPS_length);	
-		memcpy(encode_buf + SPS_length, H264_buf, length);
+		memcpy(encode_buf, SPS_buf, SPS_length);
+		if(H264_buf)
+		{
+			memcpy(encode_buf + SPS_length, H264_buf, length);
+		}
 		encode_length = length + SPS_length;		
 		frame_num++;
 		
@@ -410,14 +413,14 @@ int MyYuvtoH264(int width, int height, Mat yuv_frame, unsigned char* (&encode_bu
 	else
 	{
 		test_mpp_run_yuv(yuv_frame, mpi, ctx, H264_buf, length);
-		
 		encode_buf = new unsigned char[length];
-		memcpy(encode_buf, H264_buf, length);
-		encode_length = length;	
-		
-		delete H264_buf;
-	}
-	
+		if(H264_buf)
+		{
+			memcpy(encode_buf, H264_buf, length);
+			delete H264_buf;
+		}
+		encode_length = length;		
+	}	
 	return 0;
 }
 
