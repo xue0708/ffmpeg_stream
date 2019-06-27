@@ -1,2 +1,2 @@
-#### X264_Encode.cpp
-    实时编码；
+#### X265_Encode.cpp
+    实时H265编码；
